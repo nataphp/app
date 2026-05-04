@@ -1,0 +1,10 @@
+/vendor/
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
+/.env
+/config/local.inc.php
+/node_modules/
