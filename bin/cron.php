@@ -18,54 +18,54 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
- use Nata\Cron\Dispatcher;
- use Nata\Core\ClassLoader;
+use Nata\Cron\Dispatcher;
+use Nata\Core\ClassLoader;
 
- /**
-  * Basic constants.
-  */
-     define('DS', DIRECTORY_SEPARATOR);
-     define('ROOT', dirname(__DIR__) . DS);
-     define('APP_DIR', 'src');
-     define('APP', ROOT . APP_DIR . DS);
-     define('TMP', ROOT . 'var' . DS);
-     define('LOGS', TMP . 'logs' . DS);
+/**
+ * Basic constants.
+ */
+    define('DS', DIRECTORY_SEPARATOR);
+    define('ROOT', dirname(__DIR__) . DS);
+    define('APP_DIR', 'src');
+    define('APP', ROOT . APP_DIR . DS);
+    define('TMP', ROOT . 'var' . DS);
+    define('LOGS', TMP . 'logs' . DS);
 
-     $composerAutoload = ROOT . 'vendor' . DS . 'autoload.php';
-     if (!is_file($composerAutoload)) {
-         fwrite(STDERR, "Composer dependencies missing. Run `composer install` from the project root.\n");
-         exit(1);
-     }
-     require $composerAutoload;
+    $composerAutoload = ROOT . 'vendor' . DS . 'autoload.php';
+    if (!is_file($composerAutoload)) {
+        fwrite(STDERR, "Composer dependencies missing. Run `composer install` from the project root.\n");
+        exit(1);
+    }
+    require $composerAutoload;
 
- /**
-  * Register ClassLoader autoload
-  */
-     ClassLoader::register();
+/**
+ * Register ClassLoader autoload
+ */
+    ClassLoader::register();
 
- /**
-  * Set include path.
-  */
-     if (function_exists('ini_set')) {
-         ini_set('include_path', ROOT . PATH_SEPARATOR . ini_get('include_path'));
-     }
+/**
+ * Set include path.
+ */
+    if (function_exists('ini_set')) {
+        ini_set('include_path', ROOT . PATH_SEPARATOR . ini_get('include_path'));
+    }
 
- /**
-  * Check include path.
-  */
-     if (!class_exists('\Nata\Cron\Dispatcher')) {
-         trigger_error('Could not locate NataPHP core files.', E_USER_ERROR);
-     }
+/**
+ * Check include path.
+ */
+    if (!class_exists('\Nata\Cron\Dispatcher')) {
+        trigger_error('Could not locate NataPHP core files.', E_USER_ERROR);
+    }
 
- /**
-  * Extract $argv from $_GET.
-  */
-     if (!isset($argv) && !empty($_GET)) {
-         $argv = array_keys($_GET);
-         array_unshift($argv, 'path-to-file');
-     }
+/**
+ * Extract $argv from $_GET.
+ */
+    if (!isset($argv) && !empty($_GET)) {
+        $argv = array_keys($_GET);
+        array_unshift($argv, 'path-to-file');
+    }
 
- /**
-  * Dispatch...
-  */
+/**
+ * Dispatch...
+ */
      return Dispatcher::run($argv);
