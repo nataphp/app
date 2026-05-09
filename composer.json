@@ -28,5 +28,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php vendor/nataphp/core/scripts/sync-nata-assets.php"
+        ],
+        "post-update-cmd": [
+            "@php vendor/nataphp/core/scripts/sync-nata-assets.php"
+        ]
     }
 }
